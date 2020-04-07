@@ -22,6 +22,7 @@ export default class BookDetails extends React.Component {
         return(
             <div>
                 <h1>{this.state.book.title}</h1>
+                <h2>{this.state.book.subtitle}</h2>
                 <img src={this.state.image.smallThumbnail}/>
                 <h1>Author: {this.state.book.authors}</h1>
                 <h1>Publisher: {this.state.book.publisher}</h1>

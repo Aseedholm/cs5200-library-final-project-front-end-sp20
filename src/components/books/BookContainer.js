@@ -9,12 +9,11 @@ export class BookContainer extends React.Component {
             <div className="container">
 
                 <BrowserRouter>
-                    <Link to={`/`}>
-                        <button>
-                            Book Search
-                        </button>
 
+                    <Link className="btn btn-primary btn-block" to={`/book-search/`}>
+                        Book Search
                     </Link>
+
                     <Route
                         path="/book-search/"
                         exact={true}
