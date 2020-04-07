@@ -15,8 +15,6 @@ export default class BookSearch extends React.Component {
         if(searchTitle === undefined) {
             searchTitle = 'Stormlight'
         }
-        // fetch(`https://api.rawg.io/api/games/${searchTitle}`)
-        // fetch(`https://api.rawg.io/api/games?search=${searchTitle}`)
         fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTitle}&maxResults=40&orderBy=relevance`)
             .then(response => response.json())
             .then(results => this.setState({
