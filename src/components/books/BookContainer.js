@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Link} from "react-router-dom";
 import BookSearch from "./BookSearch";
 import BookDetails from "./BookDetails";
 import LoginPage from "../login/LoginPage";
-import Registration from "../Registration/Registration";
+import Registration from "../registration/Registration";
 import MemberPage from "../member/member-page"
 import LibrarianPage from "../librarian/librarian-page"
 import UserAdminPage from "../userAdmin/userAdmin-page"
