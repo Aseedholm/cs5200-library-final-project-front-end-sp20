@@ -14,22 +14,12 @@ export default class MemberSearch extends React.Component {
         if(searchMember === undefined) {
             searchMember = ' '
         }
-        //findUserByUsername api call here.
-        fetch(`http://localhost:8080/api/member/username/${searchMember}`)
+        fetch(`http://localhost:8080/api/members/username/${searchMember}`)
             .then(response => response.json())
             .then(results => this.setState({
                                             members: results,
                                             memberUsernameSearched: searchMember
                                            }))
-
-
-        // fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchMember}&maxResults=40&orderBy=relevance`)
-        //     .then(response => response.json())
-        //     .then(results => this.setState({
-        //                                        members: results.items,
-        //                                        memberUsernameSearched: searchMember
-        //                                    }))
-
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -39,8 +29,8 @@ export default class MemberSearch extends React.Component {
     }
 
     findUserByUsername = (username) =>
-        fetch(`http://localhost:8080/api/member/username/${username}`)
-            .then(respnose => respnose.json())
+        fetch(`http://localhost:8080/api/members/username/${username}`)
+            .then(response => response.json())
             .then(results => this.setState({
                                                members: results
                                            }))

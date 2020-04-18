@@ -9,6 +9,7 @@ import LibrarianPage from "../librarian/LibrarianPage"
 import UserAdminPage from "../userAdmin/UserAdminPage"
 import ProfilePage from "../profile/ProfilePage"
 import MemberSearch from "../member/MemberSearch";
+import LibrarianSearch from "../librarian/LibrarianSearch";
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -41,6 +42,11 @@ export class BookContainer extends React.Component {
                         </Link>
                         <Link className="btn btn-primary btn-sm float-right " to={`/member-search/`}>
                             Member Search
+                            {/*<FontAwesomeIcon icon={faBook} />*/}
+                            {/*<FontAwesomeIcon icon={faSearch} />*/}
+                        </Link>
+                        <Link className="btn btn-primary btn-sm float-right " to={`/librarian-search/`}>
+                            Librarian Search
                             {/*<FontAwesomeIcon icon={faBook} />*/}
                             {/*<FontAwesomeIcon icon={faSearch} />*/}
                         </Link>
@@ -110,6 +116,16 @@ export class BookContainer extends React.Component {
                             path="/member-search/:memberSearchedFor"
                             exact={true}
                             component={MemberSearch}/>
+
+                        <Route
+                            path="/librarian-search"
+                            exact={true}
+                            component={LibrarianSearch}/>
+
+                        <Route
+                            path="/librarian-search/:librarianSearchedFor"
+                            exact={true}
+                            component={LibrarianSearch}/>
 
                         <Route
                             path="/book-search/:bookSearchedFor"
