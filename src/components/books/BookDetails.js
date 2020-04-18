@@ -21,13 +21,27 @@ export default class BookDetails extends React.Component {
         console.log(this.state.image)
         return(
             <div>
-                <h1>{this.state.book.title}</h1>
-                <h2>{this.state.book.subtitle}</h2>
-                <img src={this.state.image.smallThumbnail}/>
-                <h1>Author: {this.state.book.authors}</h1>
-                <h1>Publisher: {this.state.book.publisher}</h1>
-                <h1>Page Count: {this.state.book.pageCount}</h1>
-                {/*<label>Book Description: {this.state.book.description}</label>*/}
+                {this.state.book.title &&
+                    <h1>{this.state.book.title}</h1>
+                }
+
+                {this.state.book.subtitle &&
+                    <h2>{this.state.book.subtitle}</h2>
+                }
+
+                {this.state.image &&
+                    <img src={this.state.image.smallThumbnail}/>
+                }
+
+                {this.state.book.authors &&
+                    <h1>Author: {this.state.book.authors}</h1>
+                }
+                {this.state.book.publisher &&
+                    <h1>Publisher: {this.state.book.publisher}</h1>
+                }
+                {this.state.book.pageCount &&
+                    <h1>Page Count: {this.state.book.pageCount}</h1>
+                }
             </div>
         )
     }

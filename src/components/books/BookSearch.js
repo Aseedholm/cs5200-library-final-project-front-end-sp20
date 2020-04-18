@@ -13,7 +13,7 @@ export default class BookSearch extends React.Component {
         console.log("ORIGINAL TITLE", searchTitle)
         console.log(this.props.match.params)
         if(searchTitle === undefined) {
-            searchTitle = 'Stormlight'
+            searchTitle = ' '
         }
         fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTitle}&maxResults=40&orderBy=relevance`)
             .then(response => response.json())
