@@ -13,36 +13,10 @@ export default class Registration extends React.Component {
         password: '',
         email: '',
         dtype: 'Member',
-        dateOfBirth: ''
+        dateOfBirth: '',
+        sponsoredBy: ''
 
-        // Member : {
-        //     firstName: '',
-        //     lastName: '',
-        //     username: '',
-        //     password: '',
-        //     email: '',
-        //     dtype: 'Member',
-        //     dateOfBirth: ''
-        // },
-        // Librarian : {
-        //     firstName: '',
-        //     lastName: '',
-        //     username: '',
-        //     password: '',
-        //     email: '',
-        //     dtype: 'Librarian',
-        //     dateOfBirth: ''
-        // },
-        // Admin : {
-        //     firstName: '',
-        //     lastName: '',
-        //     username: '',
-        //     password: '',
-        //     email: '',
-        //     dtype: 'Admin',
-        //     dateOfBirth: ''
-        // }
-    }
+    };
 
     register = (user) => {
         {this.state.dtype === 'Member' &&
@@ -53,6 +27,7 @@ export default class Registration extends React.Component {
                     'content-type': 'application/json'
                 },
             }).then(response => response.json())
+                .then(response => console.log(response))
         }
         {this.state.dtype === 'Librarian' &&
          fetch(`http://localhost:8080/api/librarians`, {
@@ -74,6 +49,7 @@ export default class Registration extends React.Component {
         }
 
     }
+
 
     render() {
         return(
@@ -170,6 +146,22 @@ export default class Registration extends React.Component {
                                          })
                        }/>
                 <br/>
+                {this.state.dtype === 'Member' &&
+                    <span>
+                 <h4 >
+                    Sponsor Id
+                </h4>
+                    <input placeholder="13 and under members must have a sponsor to register." type="number" className="input-group"
+                           onChange={ (e) =>
+                               this.setState({
+                                                 sponsoredBy: e.target.value
+                                             })
+                           }/>
+                    <br/>
+                    </span>
+                }
+
+
                 <button className="btn btn-primary btn-block"
                         onClick={ () => {
                             let user = {
@@ -179,7 +171,8 @@ export default class Registration extends React.Component {
                                 password: this.state.password,
                                 email: this.state.email,
                                 dtype: this.state.dtype,
-                                dateOfBirth: this.state.dateOfBirth
+                                dateOfBirth: this.state.dateOfBirth,
+                                sponsoredBy: this.state.sponsoredBy
                             };
                             this.register(user)
                         }}

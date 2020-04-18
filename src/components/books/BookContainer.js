@@ -4,10 +4,11 @@ import BookSearch from "./BookSearch";
 import BookDetails from "./BookDetails";
 import LoginPage from "../login/LoginPage";
 import Registration from "../registration/Registration";
-import MemberPage from "../member/member-page"
-import LibrarianPage from "../librarian/librarian-page"
-import UserAdminPage from "../userAdmin/userAdmin-page"
-import ProfilePage from "../profile/profile-page"
+import MemberPage from "../member/MemberPage"
+import LibrarianPage from "../librarian/LibrarianPage"
+import UserAdminPage from "../userAdmin/UserAdminPage"
+import ProfilePage from "../profile/ProfilePage"
+import MemberSearch from "../member/MemberSearch";
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -37,6 +38,11 @@ export class BookContainer extends React.Component {
                         </Link>
                         <Link className="btn btn-primary btn-sm float-right " to={`/profile/`}>
                             Profile
+                        </Link>
+                        <Link className="btn btn-primary btn-sm float-right " to={`/member-search/`}>
+                            Member Search
+                            {/*<FontAwesomeIcon icon={faBook} />*/}
+                            {/*<FontAwesomeIcon icon={faSearch} />*/}
                         </Link>
                     </div>
 
@@ -93,6 +99,22 @@ export class BookContainer extends React.Component {
                             path="/profile"
                             exact={true}
                             component={ProfilePage}
+                        />
+
+                        <Route
+                        path="/member-search"
+                        exact={true}
+                        component={MemberSearch}/>
+
+                        <Route
+                            path="/member-search/:memberSearchedFor"
+                            exact={true}
+                            component={MemberSearch}/>
+
+                        <Route
+                            path="/book-search/:bookSearchedFor"
+                            exact={true}
+                            component={BookSearch}
                         />
                     </div>
                 </BrowserRouter>
