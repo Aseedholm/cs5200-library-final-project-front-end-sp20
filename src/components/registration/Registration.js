@@ -180,8 +180,7 @@ export default class Registration extends React.Component {
                                 email: this.state.email,
                                 dtype: this.state.dtype,
                                 dateOfBirth: this.state.dateOfBirth
-
-                            }
+                            };
                             this.register(user)
                         }}
                 >

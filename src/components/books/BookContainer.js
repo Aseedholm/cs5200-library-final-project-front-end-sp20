@@ -7,6 +7,7 @@ import Registration from "../registration/Registration";
 import MemberPage from "../member/member-page"
 import LibrarianPage from "../librarian/librarian-page"
 import UserAdminPage from "../userAdmin/userAdmin-page"
+import ProfilePage from "../profile/profile-page"
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -14,6 +15,7 @@ import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import {faBook} from "@fortawesome/free-solid-svg-icons";
 
 export class BookContainer extends React.Component {
+
     render () {
         return (
             <div className="container row">
@@ -32,6 +34,9 @@ export class BookContainer extends React.Component {
                         <br/>
                         <Link className="btn btn-primary btn-sm float-right " to={`/registration/`}>
                             Registration
+                        </Link>
+                        <Link className="btn btn-primary btn-sm float-right " to={`/profile/`}>
+                            Profile
                         </Link>
                     </div>
 
@@ -82,6 +87,12 @@ export class BookContainer extends React.Component {
                             path="/userAdmin"
                             exact={true}
                             component={UserAdminPage}
+                        />
+
+                        <Route
+                            path="/profile"
+                            exact={true}
+                            component={ProfilePage}
                         />
                     </div>
                 </BrowserRouter>
