@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 export default class UserAdminPage extends React.Component {
     state = {
@@ -10,7 +11,12 @@ export default class UserAdminPage extends React.Component {
         return(
             <div>
                 <h1>User Admin</h1>
-                <h3></h3>
+                <Link className="btn btn-primary btn-block " to={`/user-management/admin/registration`}>
+                    Create User (Member, Librarian, Administrator)
+                </Link>
+                <Link className="btn btn-primary btn-block " to={`/user-management/member-search`}>
+                    Search Members
+                </Link>
             </div>
 
         )

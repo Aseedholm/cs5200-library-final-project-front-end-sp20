@@ -51,20 +51,48 @@ export default class MemberSearch extends React.Component {
                                                            })}
                             className={`form-control`}/>
 
-                        <button
-                            onClick={() => this.props.history.push(`/member-search/${this.state.memberUsernameSearched}`)}
-                            className={`btn btn-primary btn-block`}>
-                            Search User
-                        </button>
+
+
+                        {this.props.match.path.toString().includes("user-management") &&
+                         <button
+                             onClick={() => this.props.history.push(`/user-management/admin/member-search/${this.state.memberUsernameSearched}`)}
+                             className={`btn btn-primary btn-block`}>
+                             Search User
+                         </button>
+                        }
+
+                        {!this.props.match.path.toString().includes("user-management") &&
+                         <button
+                             onClick={() => this.props.history.push(`/member-search/${this.state.memberUsernameSearched}`)}
+                             className={`btn btn-primary btn-block`}>
+                             Search User
+                         </button>
+                        }
+
+
+
+                        {/*<button*/}
+                        {/*    onClick={() => this.props.history.push(`/member-search/${this.state.memberUsernameSearched}`)}*/}
+                        {/*    className={`btn btn-primary btn-block`}>*/}
+                        {/*    Search User*/}
+                        {/*</button>*/}
 
                     </span>
 
-                    {this.state.members &&
+                    {this.state.members && !this.props.match.path.toString().includes("user-management") &&
                             <Link to={`/member-profile/${this.state.members.id}`}>
                                 {this.state.members.id}
                                 <br/>
                                 {this.state.members.username}
                             </Link>
+                    }
+
+                    {this.state.members && this.props.match.path.toString().includes("user-management") &&
+                     <Link to={`/user-management/admin/member-profile/${this.state.members.id}`}>
+                         {this.state.members.id}
+                         <br/>
+                         {this.state.members.username}
+                     </Link>
                     }
                 </ul>
             </div>

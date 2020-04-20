@@ -31,25 +31,6 @@ export default class Registration extends React.Component {
          }).then(response => response.json())
              .then(response => console.log(response))
         }
-        // {this.state.dtype === 'Librarian' &&
-        //  fetch(`http://localhost:8080/api/librarians`, {
-        //      method: 'POST',
-        //      body: JSON.stringify(user),
-        //      headers: {
-        //          'content-type': 'application/json'
-        //      },
-        //  }).then(response => response.json())
-        // }
-        // {this.state.dtype === 'Administrator' &&
-        //  fetch(`http://localhost:8080/api/admins`, {
-        //      method: 'POST',
-        //      body: JSON.stringify(user),
-        //      headers: {
-        //          'content-type': 'application/json'
-        //      },
-        //  }).then(response => response.json())
-        // }
-
     }
 
 

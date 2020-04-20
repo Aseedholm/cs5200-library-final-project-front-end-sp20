@@ -18,6 +18,7 @@ import {faBook} from "@fortawesome/free-solid-svg-icons";
 import {faHome} from "@fortawesome/free-solid-svg-icons";
 import HomePage from "../home-page/HomePage";
 import LibrarianProfilePage from "../profile/LibrarianProfilePage";
+import UserAdminRegistration from "../registration/UserAdminRegistration";
 
 
 export class BookContainer extends React.Component {
@@ -68,6 +69,12 @@ export class BookContainer extends React.Component {
                         />
 
                         <Route
+                            path="/user-management/admin/registration"
+                            exact={true}
+                            component={UserAdminRegistration}
+                        />
+
+                        <Route
                             path="/member"
                             exact={true}
                             component={MemberPage}
@@ -98,6 +105,18 @@ export class BookContainer extends React.Component {
                         />
 
                         <Route
+                            path="/user-management/admin/member-profile"
+                            exact={true}
+                            component={MemberProfilePage}
+                        />
+
+                        <Route
+                            path="/user-management/admin/member-profile/:memberId"
+                            exact={true}
+                            component={MemberProfilePage}
+                        />
+
+                        <Route
                             path="/librarian-profile"
                             exact={true}
                             component={LibrarianProfilePage}
@@ -116,6 +135,16 @@ export class BookContainer extends React.Component {
 
                         <Route
                             path="/member-search/:memberSearchedFor"
+                            exact={true}
+                            component={MemberSearch}/>
+
+                        <Route
+                            path="/user-management/member-search"
+                            exact={true}
+                            component={MemberSearch}/>
+
+                        <Route
+                            path="/user-management/admin/member-search/:memberSearchedFor"
                             exact={true}
                             component={MemberSearch}/>
 

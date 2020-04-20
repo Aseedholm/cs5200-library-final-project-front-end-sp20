@@ -1,6 +1,10 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 export default class MemberProfilePage extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     state = {
         member : {
             username: '',
@@ -36,6 +40,13 @@ export default class MemberProfilePage extends React.Component {
             .then(results => this.setState({
                                                libraryCardExpirationDate: results.expirationDate
                                                }))
+    }
+
+    deleteMember = (memberId) => {
+        fetch(`http://localhost:8080/api/members/${memberId}`, {
+            method: "DELETE"
+        })
+            .then(response => response.json())
     }
 
     render() {
@@ -80,6 +91,17 @@ export default class MemberProfilePage extends React.Component {
                     <h4 className="form-control">
                         {this.state.libraryCardExpirationDate}
                     </h4>
+
+                    {this.props.match.path.toString().includes("user-management") &&
+                        <Link className="btn btn-primary btn-block" to={"/userAdmin"}
+                                onClick={ () => {
+                                    this.deleteMember(this.props.match.params.memberId)
+                                }}
+                        >
+                            Delete
+                        </Link>
+
+                    }
 
                 </div>
             </div>
