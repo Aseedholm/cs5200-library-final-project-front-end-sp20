@@ -37,8 +37,16 @@ export default class HomePage extends React.Component {
                         Registration
                     </Link>
                     <br/>
-                    <Link className="btn btn-primary btn-block " to={`/profile/`}>
-                        Profile
+                    <Link className="btn btn-primary btn-block " to={`/member-profile/`}>
+                        Member Profile
+                    </Link>
+                    <br/>
+                    <Link className="btn btn-primary btn-block " to={`/member-profile/8`}>
+                        Member Profile TEST ADULT
+                    </Link>
+                    <br/>
+                    <Link className="btn btn-primary btn-block " to={`/member-profile/11`}>
+                        Member Profile TEST CHILD
                     </Link>
                     <br/>
                     <Link className="btn btn-primary btn-block " to={`/member-search/`}>
