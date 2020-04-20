@@ -1,9 +1,18 @@
 import React from "react";
 
 export default class UserAdminPage extends React.Component {
+    state = {
+
+    }
+
+
     render() {
         return(
-            <h1>USER ADMIN</h1>
+            <div>
+                <h1>User Admin</h1>
+                <h3></h3>
+            </div>
+
         )
     }
 

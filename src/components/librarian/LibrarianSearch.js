@@ -60,7 +60,7 @@ export default class LibrarianSearch extends React.Component {
                     </span>
 
                     {this.state.librarians &&
-                     <Link to={`/book-search/book/${this.state.librarians.id}`}>
+                     <Link to={`/librarian-profile/${this.state.librarians.id}`}>
                          {this.state.librarians.id}
                          <br/>
                          {this.state.librarians.username}

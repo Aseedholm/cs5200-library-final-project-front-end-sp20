@@ -26,27 +26,35 @@ export default class HomePage extends React.Component {
                         Login
                     </Link>
                     <br/>
-                    <Link className="btn btn-primary btn-block " to={`/book-search/`}>
-                        Book Search
-                        {/*<FontAwesomeIcon icon={faBook} />*/}
-                        {/*<FontAwesomeIcon icon={faSearch} />*/}
-                    </Link>
-                    <br/>
 
                     <Link className="btn btn-primary btn-block " to={`/registration/`}>
                         Registration
                     </Link>
+                    {/*<br/>*/}
+                    {/*<Link className="btn btn-primary btn-block " to={`/member-profile/`}>*/}
+                    {/*    Member Profile*/}
+                    {/*</Link>*/}
+                    {/*<br/>*/}
+                    {/*<Link className="btn btn-primary btn-block " to={`/member-profile/8`}>*/}
+                    {/*    Member Profile TEST ADULT*/}
+                    {/*</Link>*/}
+                    {/*<br/>*/}
+                    {/*<Link className="btn btn-primary btn-block " to={`/member-profile/11`}>*/}
+                    {/*    Member Profile TEST CHILD*/}
+                    {/*</Link>*/}
+                    {/*<br/>*/}
+                    {/*<Link className="btn btn-primary btn-block " to={`/librarian-profile/`}>*/}
+                    {/*    Librarian Profile*/}
+                    {/*</Link>*/}
+                    {/*<br/>*/}
+                    {/*<Link className="btn btn-primary btn-block " to={`/librarian-profile/17`}>*/}
+                    {/*    Librarian Profile TEST*/}
+                    {/*</Link>*/}
                     <br/>
-                    <Link className="btn btn-primary btn-block " to={`/member-profile/`}>
-                        Member Profile
-                    </Link>
-                    <br/>
-                    <Link className="btn btn-primary btn-block " to={`/member-profile/8`}>
-                        Member Profile TEST ADULT
-                    </Link>
-                    <br/>
-                    <Link className="btn btn-primary btn-block " to={`/member-profile/11`}>
-                        Member Profile TEST CHILD
+                    <Link className="btn btn-primary btn-block " to={`/book-search/`}>
+                        Book Search
+                        {/*<FontAwesomeIcon icon={faBook} />*/}
+                        {/*<FontAwesomeIcon icon={faSearch} />*/}
                     </Link>
                     <br/>
                     <Link className="btn btn-primary btn-block " to={`/member-search/`}>
@@ -60,6 +68,7 @@ export default class HomePage extends React.Component {
                         {/*<FontAwesomeIcon icon={faBook} />*/}
                         {/*<FontAwesomeIcon icon={faSearch} />*/}
                     </Link>
+
                 </div>
 
             </div>

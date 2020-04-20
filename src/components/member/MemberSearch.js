@@ -60,7 +60,7 @@ export default class MemberSearch extends React.Component {
                     </span>
 
                     {this.state.members &&
-                            <Link to={`/book-search/book/${this.state.members.id}`}>
+                            <Link to={`/member-profile/${this.state.members.id}`}>
                                 {this.state.members.id}
                                 <br/>
                                 {this.state.members.username}

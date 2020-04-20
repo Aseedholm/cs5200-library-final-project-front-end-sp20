@@ -17,6 +17,8 @@ import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import {faBook} from "@fortawesome/free-solid-svg-icons";
 import {faHome} from "@fortawesome/free-solid-svg-icons";
 import HomePage from "../home-page/HomePage";
+import LibrarianProfilePage from "../profile/LibrarianProfilePage";
+
 
 export class BookContainer extends React.Component {
 
@@ -93,6 +95,18 @@ export class BookContainer extends React.Component {
                             path="/member-profile/:memberId"
                             exact={true}
                             component={MemberProfilePage}
+                        />
+
+                        <Route
+                            path="/librarian-profile"
+                            exact={true}
+                            component={LibrarianProfilePage}
+                        />
+
+                        <Route
+                            path="/librarian-profile/:librarianId"
+                            exact={true}
+                            component={LibrarianProfilePage}
                         />
 
                         <Route
