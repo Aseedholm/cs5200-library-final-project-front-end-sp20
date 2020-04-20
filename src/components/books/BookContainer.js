@@ -7,7 +7,7 @@ import Registration from "../registration/Registration";
 import MemberPage from "../member/MemberPage"
 import LibrarianPage from "../librarian/LibrarianPage"
 import UserAdminPage from "../userAdmin/UserAdminPage"
-import ProfilePage from "../profile/ProfilePage"
+import MemberProfilePage from "../profile/MemberProfilePage"
 import MemberSearch from "../member/MemberSearch";
 import LibrarianSearch from "../librarian/LibrarianSearch";
 
@@ -15,6 +15,8 @@ import LibrarianSearch from "../librarian/LibrarianSearch";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import {faBook} from "@fortawesome/free-solid-svg-icons";
+import {faHome} from "@fortawesome/free-solid-svg-icons";
+import HomePage from "../home-page/HomePage";
 
 export class BookContainer extends React.Component {
 
@@ -23,36 +25,16 @@ export class BookContainer extends React.Component {
             <div className="container row">
 
                 <BrowserRouter>
-                    <div>
-                        <Link className="btn btn-primary btn-sm float-right " to={`/book-search/`}>
-                            Book Search
-                            {/*<FontAwesomeIcon icon={faBook} />*/}
-                            {/*<FontAwesomeIcon icon={faSearch} />*/}
-                        </Link>
-                        <br/>
-                        <Link className="btn btn-primary btn-sm float-right " to={`/login`}>
-                            Login
-                        </Link>
-                        <br/>
-                        <Link className="btn btn-primary btn-sm float-right " to={`/registration/`}>
-                            Registration
-                        </Link>
-                        <Link className="btn btn-primary btn-sm float-right " to={`/profile/`}>
-                            Profile
-                        </Link>
-                        <Link className="btn btn-primary btn-sm float-right " to={`/member-search/`}>
-                            Member Search
-                            {/*<FontAwesomeIcon icon={faBook} />*/}
-                            {/*<FontAwesomeIcon icon={faSearch} />*/}
-                        </Link>
-                        <Link className="btn btn-primary btn-sm float-right " to={`/librarian-search/`}>
-                            Librarian Search
-                            {/*<FontAwesomeIcon icon={faBook} />*/}
-                            {/*<FontAwesomeIcon icon={faSearch} />*/}
-                        </Link>
-                    </div>
-
                     <div className="col">
+                        <Link className="btn btn-primary float-left " to={`/`}>
+                            <FontAwesomeIcon icon={faHome}/>
+                        </Link>
+                        <br/>
+                        <Route
+                            path="/"
+                            exact={true}
+                            component={HomePage}
+                        />
                         <Route
                             path="/book-search/"
                             exact={true}
@@ -102,9 +84,15 @@ export class BookContainer extends React.Component {
                         />
 
                         <Route
-                            path="/profile"
+                            path="/member-profile"
                             exact={true}
-                            component={ProfilePage}
+                            component={MemberProfilePage}
+                        />
+
+                        <Route
+                            path="/member-profile/:memberId"
+                            exact={true}
+                            component={MemberProfilePage}
                         />
 
                         <Route
@@ -127,11 +115,6 @@ export class BookContainer extends React.Component {
                             exact={true}
                             component={LibrarianSearch}/>
 
-                        <Route
-                            path="/book-search/:bookSearchedFor"
-                            exact={true}
-                            component={BookSearch}
-                        />
                     </div>
                 </BrowserRouter>
             </div>

@@ -14,7 +14,9 @@ export default class Registration extends React.Component {
         email: '',
         dtype: 'Member',
         dateOfBirth: '',
-        sponsoredBy: ''
+        sponsoredBy: '',
+        // dateHired: '',
+        hasW2OnFile: ''
 
     };
 
@@ -160,6 +162,20 @@ export default class Registration extends React.Component {
                     <br/>
                     </span>
                 }
+                {this.state.dtype === 'Librarian' &&
+                 <span>
+                     <h4>
+                        Date Hired
+                    </h4>
+                    <input type="date" className="input-group"
+                           onChange={ (e) =>
+                               this.setState({
+                                                 dateHired: e.target.value
+                                             })
+                           }/>
+                    <br/>
+                </span>
+                }
 
 
                 <button className="btn btn-primary btn-block"
@@ -172,7 +188,9 @@ export default class Registration extends React.Component {
                                 email: this.state.email,
                                 dtype: this.state.dtype,
                                 dateOfBirth: this.state.dateOfBirth,
-                                sponsoredBy: this.state.sponsoredBy
+                                sponsoredBy: this.state.sponsoredBy,
+                                // dateHired: this.state.dateHired,
+                                hasW2OnFile: this.state.hasW2OnFile
                             };
                             this.register(user)
                         }}
