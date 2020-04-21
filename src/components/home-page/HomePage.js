@@ -53,21 +53,19 @@ export default class HomePage extends React.Component {
                     <br/>
                     <Link className="btn btn-primary btn-block " to={`/book-search/`}>
                         Book Search
-                        {/*<FontAwesomeIcon icon={faBook} />*/}
-                        {/*<FontAwesomeIcon icon={faSearch} />*/}
                     </Link>
-                    <br/>
-                    <Link className="btn btn-primary btn-block " to={`/member-search/`}>
-                        Member Search
-                        {/*<FontAwesomeIcon icon={faBook} />*/}
-                        {/*<FontAwesomeIcon icon={faSearch} />*/}
-                    </Link>
-                    <br/>
-                    <Link className="btn btn-primary btn-block " to={`/librarian-search/`}>
-                        Librarian Search
-                        {/*<FontAwesomeIcon icon={faBook} />*/}
-                        {/*<FontAwesomeIcon icon={faSearch} />*/}
-                    </Link>
+                    {/*<br/>*/}
+                    {/*<Link className="btn btn-primary btn-block " to={`/member-search/`}>*/}
+                    {/*    Member Search*/}
+                    {/*    /!*<FontAwesomeIcon icon={faBook} />*!/*/}
+                    {/*    /!*<FontAwesomeIcon icon={faSearch} />*!/*/}
+                    {/*</Link>*/}
+                    {/*<br/>*/}
+                    {/*<Link className="btn btn-primary btn-block " to={`/librarian-search/`}>*/}
+                    {/*    Librarian Search*/}
+                    {/*    /!*<FontAwesomeIcon icon={faBook} />*!/*/}
+                    {/*    /!*<FontAwesomeIcon icon={faSearch} />*!/*/}
+                    {/*</Link>*/}
 
                 </div>
 

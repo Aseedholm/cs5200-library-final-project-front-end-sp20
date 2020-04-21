@@ -57,31 +57,39 @@ export default class UserAdminRegistration extends React.Component {
         return(
             <div className="container">
                 <h4>
-                    Registration
+                    Create {this.state.dtype}
                 </h4>
 
 
 
 
-                {/*<select id="userType" className="custom-select">*/}
-                <select id="userType" className="custom-select" onChange={(event => {
-                    const newUserType = event.target.value;
-                    this.setState({
-                                      dtype : newUserType
-                                  })
-                })}
-                        value={this.state.dtype}>
-                    <option value="Member">
-                        Member
-                    </option>
-                    <option value="Librarian">
-                        Librarian
-                    </option>
-                    <option value="Administrator">
-                        Administrator
-                    </option>
+                 <div>
+                     <select id="userType" className="custom-select" onChange={(event => {
+                         const newUserType = event.target.value;
+                         this.setState({
+                                           dtype : newUserType
+                                       })
+                     })}
+                             value={this.state.dtype}>
+                         <option value="Member">
+                             Member
+                         </option>
+                         {this.props.match.path.toString().includes("admin") &&
+                              <option value="Librarian">
+                                  Librarian
+                              </option>
+                         }
+                         {this.props.match.path.toString().includes("admin") &&
+                          <option value="Administrator">
+                              Administrator
+                          </option>
+                         }
 
-                </select>
+                     </select>
+                 </div>
+
+
+
                 <h4 >
                     First Name
                 </h4>

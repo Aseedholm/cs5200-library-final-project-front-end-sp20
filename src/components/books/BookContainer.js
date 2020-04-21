@@ -76,6 +76,12 @@ export class BookContainer extends React.Component {
                         />
 
                         <Route
+                            path="/user-management/librarian/registration"
+                            exact={true}
+                            component={UserAdminRegistration}
+                        />
+
+                        <Route
                             path="/member"
                             exact={true}
                             component={MemberPage}
@@ -113,6 +119,18 @@ export class BookContainer extends React.Component {
 
                         <Route
                             path="/user-management/admin/member-profile/:memberId"
+                            exact={true}
+                            component={MemberProfilePage}
+                        />
+
+                        <Route
+                            path="/user-management/librarian/member-profile"
+                            exact={true}
+                            component={MemberProfilePage}
+                        />
+
+                        <Route
+                            path="/user-management/librarian/member-profile/:memberId"
                             exact={true}
                             component={MemberProfilePage}
                         />
@@ -172,6 +190,18 @@ export class BookContainer extends React.Component {
                             path="/user-management/admin/member-search/:memberSearchedFor"
                             exact={true}
                             component={MemberSearch}/>
+
+
+                        <Route
+                            path="/user-management/librarian/member-search"
+                            exact={true}
+                            component={MemberSearch}/>
+
+                        <Route
+                            path="/user-management/librarian/member-search/:memberSearchedFor"
+                            exact={true}
+                            component={MemberSearch}/>
+
                         <Route
                             path="/user-management/admin/librarian-search"
                             exact={true}

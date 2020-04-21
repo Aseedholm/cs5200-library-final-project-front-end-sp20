@@ -110,8 +110,7 @@ export default class MemberProfilePage extends React.Component {
 
                     <br/>
                     <h3> Currently Rented Books by ID </h3>
-                    {console.log(this.state.checkedOutBooks)}
-                    {this.state.checkedOutBooks &&
+                    {this.state.checkedOutBooks && this.state.checkedOutBooks.length > 0 &&
                      this.state.checkedOutBooks.map((book, index) =>
                         <li key={index} className="list-group-item">
                             <span>
@@ -126,7 +125,7 @@ export default class MemberProfilePage extends React.Component {
                      )
                     }
                     <br/>
-                    {this.props.match.path.toString().includes("user-management") &&
+                    {this.props.match.path.toString().includes("admin") &&
                         <Link className="btn btn-primary btn-block" to={"/userAdmin"}
                                 onClick={ () => {
                                     this.deleteMember(this.props.match.params.memberId)
@@ -134,6 +133,16 @@ export default class MemberProfilePage extends React.Component {
                         >
                             Delete
                         </Link>
+
+                    }
+                    {this.props.match.path.toString().includes("librarian") &&
+                     <Link className="btn btn-primary btn-block" to={"/librarian"}
+                           onClick={ () => {
+                               this.deleteMember(this.props.match.params.memberId)
+                           }}
+                     >
+                         Delete
+                     </Link>
 
                     }
 

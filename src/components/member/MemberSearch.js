@@ -53,9 +53,16 @@ export default class MemberSearch extends React.Component {
 
 
 
-                        {this.props.match.path.toString().includes("user-management") &&
+                        {this.props.match.path.toString().includes("admin") &&
                          <button
                              onClick={() => this.props.history.push(`/user-management/admin/member-search/${this.state.memberUsernameSearched}`)}
+                             className={`btn btn-primary btn-block`}>
+                             Search User
+                         </button>
+                        }
+                        {this.props.match.path.toString().includes("librarian") &&
+                         <button
+                             onClick={() => this.props.history.push(`/user-management/librarian/member-search/${this.state.memberUsernameSearched}`)}
                              className={`btn btn-primary btn-block`}>
                              Search User
                          </button>
@@ -87,8 +94,15 @@ export default class MemberSearch extends React.Component {
                             </Link>
                     }
 
-                    {this.state.members && this.props.match.path.toString().includes("user-management") &&
+                    {this.state.members && this.props.match.path.toString().includes("admin") &&
                      <Link to={`/user-management/admin/member-profile/${this.state.members.id}`}>
+                         {this.state.members.id}
+                         <br/>
+                         {this.state.members.username}
+                     </Link>
+                    }
+                    {this.state.members && this.props.match.path.toString().includes("librarian") &&
+                     <Link to={`/user-management/librarian/member-profile/${this.state.members.id}`}>
                          {this.state.members.id}
                          <br/>
                          {this.state.members.username}
