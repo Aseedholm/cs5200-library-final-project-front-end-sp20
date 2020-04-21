@@ -40,29 +40,6 @@ export default class Registration extends React.Component {
                 <h4>
                     Member Registration
                 </h4>
-
-
-
-
-                {/*/!*<select id="userType" className="custom-select">*!/*/}
-                {/*<select id="userType" className="custom-select" onChange={(event => {*/}
-                {/*    const newUserType = event.target.value;*/}
-                {/*    this.setState({*/}
-                {/*                      dtype : newUserType*/}
-                {/*                  })*/}
-                {/*})}*/}
-                {/*        value={this.state.dtype}>*/}
-                {/*    <option value="Member">*/}
-                {/*        Member*/}
-                {/*    </option>*/}
-                {/*    <option value="Librarian">*/}
-                {/*        Librarian*/}
-                {/*    </option>*/}
-                {/*    <option value="Administrator">*/}
-                {/*        Administrator*/}
-                {/*    </option>*/}
-
-                {/*</select>*/}
                 <h4 >
                     First Name
                 </h4>
@@ -104,11 +81,6 @@ export default class Registration extends React.Component {
                                          })
                        }/>
                 <br/>
-                {/*<h4 >*/}
-                {/*    Verify Password*/}
-                {/*</h4>*/}
-                {/*<input placeholder="Verify Password" type="password" className="input-group"/>*/}
-                {/*<br/>*/}
                 <h4 >
                     Email
                 </h4>
@@ -139,34 +111,6 @@ export default class Registration extends React.Component {
                                          })
                        }/>
                 <br/>
-                {/*{this.state.dtype === 'Member' &&*/}
-                {/* <span>*/}
-                {/* <h4 >*/}
-                {/*    Sponsor Id*/}
-                {/*</h4>*/}
-                {/*    <input placeholder="13 and under members must have a sponsor to register." type="number" className="input-group"*/}
-                {/*           onChange={ (e) =>*/}
-                {/*               this.setState({*/}
-                {/*                                 sponsoredBy: e.target.value*/}
-                {/*                             })*/}
-                {/*           }/>*/}
-                {/*    <br/>*/}
-                {/*    </span>*/}
-                {/*}*/}
-                {/*{this.state.dtype === 'Librarian' &&*/}
-                {/* <span>*/}
-                {/*     <h4>*/}
-                {/*        Date Hired*/}
-                {/*    </h4>*/}
-                {/*    <input type="date" className="input-group"*/}
-                {/*           onChange={ (e) =>*/}
-                {/*               this.setState({*/}
-                {/*                                 dateHired: e.target.value*/}
-                {/*                             })*/}
-                {/*           }/>*/}
-                {/*    <br/>*/}
-                {/*</span>*/}
-                {/*}*/}
 
 
                 <button className="btn btn-primary btn-block"

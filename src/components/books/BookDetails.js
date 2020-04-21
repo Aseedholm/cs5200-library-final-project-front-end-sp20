@@ -26,7 +26,25 @@ export default class BookDetails extends React.Component {
         book: {},
         image: {},
         hardCoverBook: [],
-        audioBooks: []
+        audioBooks: [],
+        renterId: ''
+    }
+
+    rentHardCopy = (memberId) => {
+        fetch(`http://localhost:8080/api/members/${memberId}/check-out/${this.props.match.params.bookId}/hard-copy`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+        }).then(response => response.json())
+    }
+    rentAudiobook = (memberId) => {
+        fetch(`http://localhost:8080/api/members/${memberId}/check-out/${this.props.match.params.bookId}/audiobook-copy`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+        }).then(response => response.json())
     }
     render() {
         return(
@@ -52,11 +70,40 @@ export default class BookDetails extends React.Component {
                 {this.state.book.pageCount &&
                     <h1>Page Count: {this.state.book.pageCount}</h1>
                 }
-                {this.state.hardCoverBook &&
-                 <h1>Number of Hard Cover copies available: {this.state.hardCoverBook.length}</h1>
+                {this.state.hardCoverBook && this.state.hardCoverBook.length > 0 &&
+                 <div>
+                        <h3>Number of Hard Cover copies available: {this.state.hardCoverBook.length}</h3>
+                         <h4 >
+                             Renter (Member) Id:
+                         </h4>
+                         <input placeholder="Member Id" type="text" className="input-group"
+                                onChange={ (e) =>
+                                    this.setState({
+                                                      renterId: e.target.value
+                                                  })
+                                }/>
+                        <button className="btn btn-primary btn-sm" onClick={() => {
+                            this.rentHardCopy(this.state.renterId)
+                        }}>Rent Hard Copy</button>
+                 </div>
+
                 }
-                {this.state.audioBooks &&
-                 <h1>Number of Audiobook copies: {this.state.audioBooks.length}</h1>
+                {this.state.audioBooks && this.state.audioBooks.length > 0 &&
+                    <div>
+                        <h3>Number of Audiobook copies: {this.state.audioBooks.length}</h3>
+                        <h4 >
+                            Renter (Member) Id:
+                        </h4>
+                        <input placeholder="Member Id" type="text" className="input-group"
+                               onChange={ (e) =>
+                                   this.setState({
+                                                     renterId: e.target.value
+                                                 })
+                               }/>
+                        <button className="btn btn-primary btn-sm" onClick={() => {
+                            this.rentAudiobook(this.state.renterId)
+                        }}>Rent Audiobook Copy</button>
+                    </div>
                 }
             </div>
         )
