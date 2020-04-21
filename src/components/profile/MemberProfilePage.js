@@ -22,6 +22,11 @@ export default class MemberProfilePage extends React.Component {
 
     }
 
+    findSponsorInformation = (sponsorId) =>
+        fetch(`http://localhost:8080/api/members/id/${sponsorId}`)
+            .then(result => result.json())
+            .then(response => console.log(response))
+
     componentDidMount() {
         const memberId = this.props.match.params.memberId;
         fetch(`http://localhost:8080/api/members/id/${memberId}`)
@@ -49,6 +54,7 @@ export default class MemberProfilePage extends React.Component {
             .then(results => this.setState({
                                                checkedOutBooks: results
                                            }))
+
     }
 
     deleteMember = (memberId) => {
@@ -59,7 +65,7 @@ export default class MemberProfilePage extends React.Component {
     }
 
     deleteBookCopy = (bookId) => {
-        fetch(`http://localhost:8080/api/members/${bookId}`, {
+        fetch(`http://localhost:8080/api/book-copies/${bookId}`, {
             method: "DELETE"
         })
             .then(response => response.json())
@@ -115,8 +121,12 @@ export default class MemberProfilePage extends React.Component {
                         <li key={index} className="list-group-item">
                             <span>
                                 Rented Book Id: {book[0].id}
+                                <br/>
+                                Rented Book Name: {book[1]}
                                 {this.props.match.path.toString().includes("user-management") &&
-                                    <button className="btn btn-primary btn-sm float-right">
+                                    <button className="btn btn-primary btn-sm float-right" onClick={() => {
+                                        this.deleteBookCopy(book[0].id)
+                                    }}>
                                         <FontAwesomeIcon icon={faTrash} />
                                     </button>
                                 }
