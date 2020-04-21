@@ -13,7 +13,7 @@ export default class Registration extends React.Component {
         username: '',
         password: '',
         email: '',
-        dtype: 'Member',
+        dtype: 'Library Member',
         dateOfBirth: '',
         sponsoredBy: '',
         dateHired: '',
@@ -23,7 +23,7 @@ export default class Registration extends React.Component {
     };
 
     register = (user) => {
-        {this.state.dtype === 'Member' &&
+        {this.state.dtype === 'Library Member' &&
          fetch(`http://localhost:8080/api/members`, {
              method: 'POST',
              body: JSON.stringify(user),

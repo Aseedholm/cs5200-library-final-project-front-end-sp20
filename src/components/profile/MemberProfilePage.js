@@ -18,14 +18,17 @@ export default class MemberProfilePage extends React.Component {
             sponsoredBy: ''
         },
         libraryCardExpirationDate: '',
-        checkedOutBooks: []
+        checkedOutBooks: [],
+        sponsorInfo:{}
 
     }
 
     findSponsorInformation = (sponsorId) =>
         fetch(`http://localhost:8080/api/members/id/${sponsorId}`)
             .then(result => result.json())
-            .then(response => console.log(response))
+            .then(response => this.setState({
+                sponsorInfo: response
+                                            }))
 
     componentDidMount() {
         const memberId = this.props.match.params.memberId;
@@ -43,11 +46,13 @@ export default class MemberProfilePage extends React.Component {
                                                }
 
                                            }))
+
         fetch(`http://localhost:8080/api/library-cards/member-id/${memberId}`)
             .then(response => response.json())
             .then(results => this.setState({
                                                libraryCardExpirationDate: results.expirationDate
                                                }))
+
         fetch(`http://localhost:8080/api/members/${memberId}/checked-out-currently`)
             .then(response => response.json())
             // .then(results => console.log(results))
@@ -56,6 +61,16 @@ export default class MemberProfilePage extends React.Component {
                                            }))
 
     }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(prevState.checkedOutBooks.length !== this.state.checkedOutBooks.length) {
+            this.setState(prevState => {
+                            prevState.checkedOutBooks = this.state.checkedOutBooks
+                            return prevState
+                          })
+        }
+    }
+
 
     deleteMember = (memberId) => {
         fetch(`http://localhost:8080/api/members/${memberId}`, {
@@ -67,6 +82,13 @@ export default class MemberProfilePage extends React.Component {
     deleteBookCopy = (bookId) => {
         fetch(`http://localhost:8080/api/book-copies/${bookId}`, {
             method: "DELETE"
+        })
+            .then(response => response.json())
+    }
+
+    returnBook = (bookId) => {
+        fetch(`http://localhost:8080/api/members/${this.props.match.params.memberId}/return/${bookId}`, {
+            method: "POST"
         })
             .then(response => response.json())
     }
@@ -105,6 +127,7 @@ export default class MemberProfilePage extends React.Component {
                         <h3>Sponsored By</h3>
                         <h4 className="form-control">
                             {this.state.member.sponsoredBy}
+                            {console.log("HERE",this.state.sponsorInfo)}
                         </h4>
                      </span>
 
@@ -129,6 +152,14 @@ export default class MemberProfilePage extends React.Component {
                                     }}>
                                         <FontAwesomeIcon icon={faTrash} />
                                     </button>
+                                }
+                                {this.props.match.path.toString().includes("user-management") &&
+                                 <button className="btn btn-primary btn-sm float-right" onClick={() => {
+                                     this.returnBook(book[0].id)
+                                 }}>
+                                     Return Book
+
+                                 </button>
                                 }
                             </span>
                         </li>

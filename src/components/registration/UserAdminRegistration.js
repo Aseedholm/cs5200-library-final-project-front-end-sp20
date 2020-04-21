@@ -12,7 +12,7 @@ export default class UserAdminRegistration extends React.Component {
         username: '',
         password: '',
         email: '',
-        dtype: 'Member',
+        dtype: 'Library Member',
         dateOfBirth: '',
         sponsoredBy: '',
         dateHired: '',
@@ -21,7 +21,7 @@ export default class UserAdminRegistration extends React.Component {
     };
 
     register = (user) => {
-        {this.state.dtype === 'Member' &&
+        {this.state.dtype === 'Library Member' &&
             fetch(`http://localhost:8080/api/members`, {
                 method: 'POST',
                 body: JSON.stringify(user),
@@ -71,8 +71,8 @@ export default class UserAdminRegistration extends React.Component {
                                        })
                      })}
                              value={this.state.dtype}>
-                         <option value="Member">
-                             Member
+                         <option value="Library Member">
+                             Library Member
                          </option>
                          {this.props.match.path.toString().includes("admin") &&
                               <option value="Librarian">
@@ -151,7 +151,7 @@ export default class UserAdminRegistration extends React.Component {
                                          })
                        }/>
                 <br/>
-                {this.state.dtype === 'Member' &&
+                {this.state.dtype === 'Library Member' &&
                     <span>
                  <h4 >
                     Sponsor Id

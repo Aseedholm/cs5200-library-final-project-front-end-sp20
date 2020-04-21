@@ -20,6 +20,7 @@ import HomePage from "../home-page/HomePage";
 import LibrarianProfilePage from "../profile/LibrarianProfilePage";
 import UserAdminRegistration from "../registration/UserAdminRegistration";
 import CreateBookCopy from "./CreateBookCopy";
+import AuthorDetail from "../author/AuthorDetail";
 
 
 export class BookContainer extends React.Component {
@@ -67,6 +68,12 @@ export class BookContainer extends React.Component {
                             path="/registration"
                             exact={true}
                             component={Registration}
+                        />
+
+                        <Route
+                            path="/author-details/:authorLastName/:authorId"
+                            exact={true}
+                            component={AuthorDetail}
                         />
 
                         <Route
