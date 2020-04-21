@@ -6,12 +6,6 @@ export default class BookDetails extends React.Component {
 
     componentDidMount() {
         const bookId = this.props.match.params.bookId;
-            // fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
-            // .then(response => response.json())
-            // .then(book => this.setState({
-            //                                 book: book.volumeInfo,
-            //                                 image: book.volumeInfo.imageLinks
-            //                             }))
             fetch(`http://localhost:8080/api/hard-copy-books/${bookId}`)
                 .then(response => response.json())
                 .then(result => this.setState({
