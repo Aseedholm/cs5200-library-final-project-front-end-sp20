@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 export default class LibrarianProfilePage extends React.Component {
     state = {
@@ -32,6 +33,13 @@ export default class LibrarianProfilePage extends React.Component {
                                                }
 
                                            }))
+    }
+
+    deleteLibrarian = (librarianId) => {
+        fetch(`http://localhost:8080/api/librarians/${librarianId}`, {
+            method: "DELETE"
+        })
+            .then(response => response.json())
     }
 
     render() {
@@ -75,6 +83,16 @@ export default class LibrarianProfilePage extends React.Component {
                         }
 
                     </h4>
+                    {this.props.match.path.toString().includes("user-management") &&
+                     <Link className="btn btn-primary btn-block" to={"/userAdmin"}
+                           onClick={ () => {
+                               this.deleteLibrarian(this.props.match.params.librarianId)
+                           }}
+                     >
+                         Delete
+                     </Link>
+
+                    }
 
                 </div>
             </div>

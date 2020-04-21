@@ -19,6 +19,7 @@ import {faHome} from "@fortawesome/free-solid-svg-icons";
 import HomePage from "../home-page/HomePage";
 import LibrarianProfilePage from "../profile/LibrarianProfilePage";
 import UserAdminRegistration from "../registration/UserAdminRegistration";
+import CreateBookCopy from "./CreateBookCopy";
 
 
 export class BookContainer extends React.Component {
@@ -129,22 +130,24 @@ export class BookContainer extends React.Component {
                         />
 
                         <Route
+                            path="/user-management/admin/librarian-profile"
+                            exact={true}
+                            component={LibrarianProfilePage}
+                        />
+
+                        <Route
+                            path="/user-management/admin/librarian-profile/:librarianId"
+                            exact={true}
+                            component={LibrarianProfilePage}
+                        />
+
+                        <Route
                         path="/member-search"
                         exact={true}
                         component={MemberSearch}/>
 
                         <Route
                             path="/member-search/:memberSearchedFor"
-                            exact={true}
-                            component={MemberSearch}/>
-
-                        <Route
-                            path="/user-management/member-search"
-                            exact={true}
-                            component={MemberSearch}/>
-
-                        <Route
-                            path="/user-management/admin/member-search/:memberSearchedFor"
                             exact={true}
                             component={MemberSearch}/>
 
@@ -157,6 +160,32 @@ export class BookContainer extends React.Component {
                             path="/librarian-search/:librarianSearchedFor"
                             exact={true}
                             component={LibrarianSearch}/>
+
+
+
+                        <Route
+                            path="/user-management/admin/member-search"
+                            exact={true}
+                            component={MemberSearch}/>
+
+                        <Route
+                            path="/user-management/admin/member-search/:memberSearchedFor"
+                            exact={true}
+                            component={MemberSearch}/>
+                        <Route
+                            path="/user-management/admin/librarian-search"
+                            exact={true}
+                            component={LibrarianSearch}/>
+
+                        <Route
+                            path="/user-management/admin/librarian-search/:librarianSearchedFor"
+                            exact={true}
+                            component={LibrarianSearch}/>
+
+                        <Route
+                            path="/create-book"
+                            exact={true}
+                            component={CreateBookCopy}/>
 
                     </div>
                 </BrowserRouter>

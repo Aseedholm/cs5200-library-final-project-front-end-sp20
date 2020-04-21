@@ -51,16 +51,45 @@ export default class LibrarianSearch extends React.Component {
                                                            })}
                             className={`form-control`}/>
 
-                        <button
-                            onClick={() => this.props.history.push(`/librarian-search/${this.state.librarianUsernameSearched}`)}
-                            className={`btn btn-primary btn-block`}>
-                            Search Librarian
-                        </button>
+                        {/*<button*/}
+                        {/*    onClick={() => this.props.history.push(`/librarian-search/${this.state.librarianUsernameSearched}`)}*/}
+                        {/*    className={`btn btn-primary btn-block`}>*/}
+                        {/*    Search Librarian*/}
+                        {/*</button>*/}
+                        {this.props.match.path.toString().includes("user-management") &&
+                         <button
+                             onClick={() => this.props.history.push(`/user-management/admin/librarian-search/${this.state.librarianUsernameSearched}`)}
+                             className={`btn btn-primary btn-block`}>
+                             Search Librarian
+                         </button>
+                        }
 
+                        {!this.props.match.path.toString().includes("user-management") &&
+                         <button
+                             onClick={() => this.props.history.push(`/librarian-search/${this.state.librarianUsernameSearched}`)}
+                             className={`btn btn-primary btn-block`}>
+                             Search Librarian
+                         </button>
+                        }
                     </span>
 
-                    {this.state.librarians &&
+                    {/*{this.state.librarians &&*/}
+                    {/* <Link to={`/librarian-profile/${this.state.librarians.id}`}>*/}
+                    {/*     {this.state.librarians.id}*/}
+                    {/*     <br/>*/}
+                    {/*     {this.state.librarians.username}*/}
+                    {/* </Link>*/}
+                    {/*}*/}
+                    {this.state.librarians && !this.props.match.path.toString().includes("user-management") &&
                      <Link to={`/librarian-profile/${this.state.librarians.id}`}>
+                         {this.state.librarians.id}
+                         <br/>
+                         {this.state.librarians.username}
+                     </Link>
+                    }
+
+                    {this.state.librarians && this.props.match.path.toString().includes("user-management") &&
+                     <Link to={`/user-management/admin/librarian-profile/${this.state.librarians.id}`}>
                          {this.state.librarians.id}
                          <br/>
                          {this.state.librarians.username}

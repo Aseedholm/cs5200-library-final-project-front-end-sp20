@@ -14,8 +14,15 @@ export default class UserAdminPage extends React.Component {
                 <Link className="btn btn-primary btn-block " to={`/user-management/admin/registration`}>
                     Create User (Member, Librarian, Administrator)
                 </Link>
-                <Link className="btn btn-primary btn-block " to={`/user-management/member-search`}>
+                <Link className="btn btn-primary btn-block " to={`/user-management/admin/member-search`}>
                     Search Members
+                </Link>
+                <Link className="btn btn-primary btn-block " to={`/user-management/admin/librarian-search/`}>
+                    Librarian Search
+                </Link>
+
+                <Link className="btn btn-primary btn-block " to={`/create-book`}>
+                    Create Book Copy
                 </Link>
             </div>
 

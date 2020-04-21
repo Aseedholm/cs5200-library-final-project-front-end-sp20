@@ -1,5 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {faTrash} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default class MemberProfilePage extends React.Component {
     constructor(props) {
@@ -15,7 +17,8 @@ export default class MemberProfilePage extends React.Component {
             lastName: '',
             sponsoredBy: ''
         },
-        libraryCardExpirationDate: ''
+        libraryCardExpirationDate: '',
+        checkedOutBooks: []
 
     }
 
@@ -40,10 +43,23 @@ export default class MemberProfilePage extends React.Component {
             .then(results => this.setState({
                                                libraryCardExpirationDate: results.expirationDate
                                                }))
+        fetch(`http://localhost:8080/api/members/${memberId}/checked-out-currently`)
+            .then(response => response.json())
+            // .then(results => console.log(results))
+            .then(results => this.setState({
+                                               checkedOutBooks: results
+                                           }))
     }
 
     deleteMember = (memberId) => {
         fetch(`http://localhost:8080/api/members/${memberId}`, {
+            method: "DELETE"
+        })
+            .then(response => response.json())
+    }
+
+    deleteBookCopy = (bookId) => {
+        fetch(`http://localhost:8080/api/members/${bookId}`, {
             method: "DELETE"
         })
             .then(response => response.json())
@@ -92,6 +108,24 @@ export default class MemberProfilePage extends React.Component {
                         {this.state.libraryCardExpirationDate}
                     </h4>
 
+                    <br/>
+                    <h3> Currently Rented Books by ID </h3>
+                    {console.log(this.state.checkedOutBooks)}
+                    {this.state.checkedOutBooks &&
+                     this.state.checkedOutBooks.map((book, index) =>
+                        <li key={index} className="list-group-item">
+                            <span>
+                                Rented Book Id: {book[0].id}
+                                {this.props.match.path.toString().includes("user-management") &&
+                                    <button className="btn btn-primary btn-sm float-right">
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </button>
+                                }
+                            </span>
+                        </li>
+                     )
+                    }
+                    <br/>
                     {this.props.match.path.toString().includes("user-management") &&
                         <Link className="btn btn-primary btn-block" to={"/userAdmin"}
                                 onClick={ () => {
@@ -102,6 +136,7 @@ export default class MemberProfilePage extends React.Component {
                         </Link>
 
                     }
+
 
                 </div>
             </div>

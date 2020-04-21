@@ -10,15 +10,25 @@ export default class BookDetails extends React.Component {
                                             book: book.volumeInfo,
                                             image: book.volumeInfo.imageLinks
                                         }))
+            fetch(`http://localhost:8080/api/hard-copy-books/${bookId}`)
+                .then(response => response.json())
+                .then(result => this.setState({
+                    hardCoverBook: result
+                                              }))
+            fetch(`http://localhost:8080/api/audio-books/${bookId}`)
+                .then(response => response.json())
+                .then(result => this.setState({
+                                                  audioBooks: result
+                                              }))
     }
 
     state = {
         book: {},
-        image: {}
+        image: {},
+        hardCoverBook: [],
+        audioBooks: []
     }
     render() {
-        console.log(this.state.book);
-        console.log(this.state.image)
         return(
             <div>
                 {this.state.book.title &&
@@ -41,6 +51,12 @@ export default class BookDetails extends React.Component {
                 }
                 {this.state.book.pageCount &&
                     <h1>Page Count: {this.state.book.pageCount}</h1>
+                }
+                {this.state.hardCoverBook &&
+                 <h1>Number of Hard Cover copies available: {this.state.hardCoverBook.length}</h1>
+                }
+                {this.state.audioBooks &&
+                 <h1>Number of Audiobook copies: {this.state.audioBooks.length}</h1>
                 }
             </div>
         )

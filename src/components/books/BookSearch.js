@@ -61,8 +61,8 @@ export default class BookSearch extends React.Component {
 
                     </span>
 
-                    {
-                        this.state.books && this.state.books.length > 0 && this.state.bookNameSearch !== 'undefined' && this.state.bookNameSearch !== 'Undefined' && this.state.bookNameSearch !== null
+
+                    {this.state.books && this.state.books.length > 0 && this.state.bookNameSearch !== 'undefined' && this.state.bookNameSearch !== 'Undefined' && this.state.bookNameSearch !== null
                         && this.state.books.map((book, index) =>
                             <li key={index} className="list-group-item">
                                 <Link to={`/book-search/book/${book.id}`}>
