@@ -42,20 +42,11 @@ export default class LoginPage extends React.Component {
                     Password
                 </h3>
                 <input type="password" className="input-group"/>
-                {/*<button className="btn btn-primary btn-block" onClick={ () => {*/}
-                {/*    console.log(this.state.userType)*/}
-                {/*}*/}
-
-                {/*}>/!*Can add onClick() to use a fetch request at controller. *!/*/}
-                {/*    Login*/}
-
-                {/*</button>*/}
-
 
 
                 {this.state.userType === 'Member' &&
                  // eslint-disable-next-line react/jsx-no-undef
-                    <Link className="btn btn-primary btn-block" to={"/member"} onClick={ () => {
+                    <Link className="btn btn-primary btn-block" to={"/"} onClick={ () => {
                         console.log('Member')
                     }}>
                         Login Member

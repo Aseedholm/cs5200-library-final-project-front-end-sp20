@@ -21,6 +21,7 @@ import LibrarianProfilePage from "../profile/LibrarianProfilePage";
 import UserAdminRegistration from "../registration/UserAdminRegistration";
 import CreateBookCopy from "./CreateBookCopy";
 import AuthorDetail from "../author/AuthorDetail";
+import AllUsersView from "../userAdmin/AllUsersView";
 
 
 export class BookContainer extends React.Component {
@@ -218,6 +219,11 @@ export class BookContainer extends React.Component {
                             path="/user-management/admin/librarian-search/:librarianSearchedFor"
                             exact={true}
                             component={LibrarianSearch}/>
+
+                        <Route
+                            path="/user-management/admin/all-users"
+                            exact={true}
+                            component={AllUsersView}/>
 
                         <Route
                             path="/create-book"
