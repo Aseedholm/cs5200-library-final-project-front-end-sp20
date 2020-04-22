@@ -19,9 +19,24 @@ export default class MemberProfilePage extends React.Component {
         },
         libraryCardExpirationDate: '',
         checkedOutBooks: [],
-        sponsorInfo:{}
+        sponsorInfo:{},
+        editing: false
 
     }
+
+    changeEditing = (editing) => {
+        if (this.state.editing === false) {
+            this.setState({
+                editing: true
+                          })
+        } else {
+            this.setState({
+                editing: false
+                          }
+            )
+        }
+    }
+
 
     findSponsorInformation = (sponsorId) =>
         fetch(`http://localhost:8080/api/members/id/${sponsorId}`)
@@ -42,7 +57,8 @@ export default class MemberProfilePage extends React.Component {
                                                    dob: results.dateOfBirth,
                                                    firstName: results.firstName,
                                                    lastName: results.lastName,
-                                                   sponsoredBy: results.sponsoredBy
+                                                   sponsoredBy: results.sponsoredBy,
+                                                   editing: false
                                                }
 
                                            }))
@@ -97,33 +113,47 @@ export default class MemberProfilePage extends React.Component {
         return(
             <div className="container">
                 <div>
+                    {this.props.match.path.toString().includes("admin") &&
+                     <button className="btn btn-primary btn-sm float-right"
+                         onClick={() => {
+                         this.changeEditing()
+                         console.log(this.state.editing)}
+                     }>
+                         Edit
+                     </button>
+
+                    }
+
                     <h1>MEMBER PROFILE PAGE</h1>
-                    <h3>Username</h3>
-                    <h4 className="form-control">
-                        {this.state.member.username}
-                    </h4>
-                    <h3>Password</h3>
-                    <h4 className="form-control">
-                        {this.state.member.password}
-                    </h4>
-                    <h3>Email</h3>
-                    <h4 className="form-control">
-                        {this.state.member.email}
-                    </h4>
-                    <h3>Date of Birth</h3>
-                    <h4 className="form-control">
-                        {this.state.member.dob}
-                    </h4>
-                    <h3>First Name</h3>
-                    <h4 className="form-control">
-                        {this.state.member.firstName}
-                    </h4>
-                    <h3>Last Name</h3>
-                    <h4 className="form-control">
-                        {this.state.member.lastName}
-                    </h4>
-                    {this.state.member.sponsoredBy &&
-                     <span>
+
+                    {this.state.editing === false &&
+                     <div>
+                         <h3>Username</h3>
+                         <h4 className="form-control">
+                             {this.state.member.username}
+                         </h4>
+                         <h3>Password</h3>
+                         <h4 className="form-control">
+                             {this.state.member.password}
+                         </h4>
+                         <h3>Email</h3>
+                         <h4 className="form-control">
+                             {this.state.member.email}
+                         </h4>
+                         <h3>Date of Birth</h3>
+                         <h4 className="form-control">
+                             {this.state.member.dob}
+                         </h4>
+                         <h3>First Name</h3>
+                         <h4 className="form-control">
+                             {this.state.member.firstName}
+                         </h4>
+                         <h3>Last Name</h3>
+                         <h4 className="form-control">
+                             {this.state.member.lastName}
+                         </h4>
+                         {this.state.member.sponsoredBy &&
+                          <span>
                         <h3>Sponsored By</h3>
                         <h4 className="form-control">
                             {this.state.member.sponsoredBy}
@@ -131,11 +161,14 @@ export default class MemberProfilePage extends React.Component {
                         </h4>
                      </span>
 
+                         }
+                         <h3>Library Card Expiration Date</h3>
+                         <h4 className="form-control">
+                             {this.state.libraryCardExpirationDate}
+                         </h4>
+                     </div>
                     }
-                    <h3>Library Card Expiration Date</h3>
-                    <h4 className="form-control">
-                        {this.state.libraryCardExpirationDate}
-                    </h4>
+
 
                     <br/>
                     <h3> Currently Rented Books by ID </h3>

@@ -49,7 +49,7 @@ export default class AllUsersView extends React.Component {
                     {this.state.librarians
                      && this.state.librarians.map((librarian, index) =>
                                                     <li key={index} className="list-group-item">
-                                                        <Link to={`/librarian-profile/${librarian.id}`}>
+                                                        <Link to={`/user-management/admin/librarian-profile/${librarian.id}`}>
                                                             {librarian.username}
                                                         </Link>
                                                         {console.log("Librarian", index)}
