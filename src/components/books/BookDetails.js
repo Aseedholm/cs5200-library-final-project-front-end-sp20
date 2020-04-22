@@ -6,6 +6,12 @@ export default class BookDetails extends React.Component {
 
     componentDidMount() {
         const bookId = this.props.match.params.bookId;
+            fetch(`https://www.googleapis.com/books/v1/volumes/${bookId}`)
+            .then(response => response.json())
+            .then(book => this.setState({
+                                            book: book.volumeInfo,
+                                            image: book.volumeInfo.imageLinks
+                                        }))
             fetch(`http://localhost:8080/api/hard-copy-books/${bookId}`)
                 .then(response => response.json())
                 .then(result => this.setState({
@@ -30,7 +36,9 @@ export default class BookDetails extends React.Component {
         image: {},
         hardCoverBook: [],
         audioBooks: [],
-        renterId: ''
+        renterId: '',
+        availableHardCoverBooks: [],
+        availableAudioBooks: []
     }
 
     rentHardCopy = (memberId) => {
@@ -99,12 +107,10 @@ export default class BookDetails extends React.Component {
                     </div>
                 }
 
-                {/*<h1>*/}
-                {/*    Author Name: {this.state.bookDB.author.firstName} {this.state.bookDB.author.lastName}*/}
-                {/*</h1>*/}
 
                 {this.state.hardCoverBook && this.state.hardCoverBook.length > 0 &&
                  <div>
+
                         <h3>Number of Hard Cover copies available: {this.state.hardCoverBook.length}</h3>
                          <h4 >
                              Renter (Member) Id:

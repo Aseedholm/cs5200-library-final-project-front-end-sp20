@@ -11,11 +11,15 @@ export default class BookSearch extends React.Component {
 
     componentDidMount() {
         let searchTitle = this.props.match.params.bookSearchedFor
-        console.log("ORIGINAL TITLE", searchTitle)
-        console.log(this.props.match.params)
         if(searchTitle === undefined) {
             searchTitle = ' '
         }
+        fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchTitle}&maxResults=40&orderBy=relevance`)
+            .then(response => response.json())
+            .then(results => this.setState({
+                                               books: results.items,
+                                               bookNameSearch: searchTitle
+                                           }))
         fetch(`http://localhost:8080/api/books/title/${searchTitle}`)
             .then(response => response.json())
             .then(results => this.setState({
@@ -32,6 +36,12 @@ export default class BookSearch extends React.Component {
     }
 
     findBookByName = (title) => {
+        fetch(
+            `https://www.googleapis.com/books/v1/volumes?q=${title}&maxResults=40&orderBy=relevance`)
+            .then(response => response.json())
+            .then(results => this.setState({
+                                               books: results.items
+                                           }));
         fetch(`http://localhost:8080/api/books/title/${title}`)
             .then(response => response.json())
             .then(results => this.setState({
