@@ -5,6 +5,15 @@ export default class CreateBookCopy extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        fetch(`http://localhost:8080/api/books`)
+            .then(results => results.json())
+            .then(result => this.setState({
+                                              allBooksInDB: result
+                                          }))
+
+    }
+
     state = {
         edition: '',
         isAvailable: '',
@@ -15,7 +24,9 @@ export default class CreateBookCopy extends React.Component {
         numMinutes: '',
         currentCondition: '',
         numPages: '',
-        book_id: ''
+        book_id: '',
+        allBooksInDB: [],
+        bookToCopy: {}
 
     };
 
@@ -49,15 +60,40 @@ export default class CreateBookCopy extends React.Component {
             <div className="container">
 
                 <h4 >
-                    Book ID
+                    Book To Copy
                 </h4>
-                <input placeholder="Book ID" type="text" className="input-group"
-                       onChange={ (e) =>
-                           this.setState({
-                                             book_id: e.target.value
-                                         })
-                       }/>
-                <br/>
+
+                <select id="bookType" className="custom-select" onChange={(event => {
+                    const bookSelected = event.target.value;
+                    this.setState({
+                                      bookToCopy : bookSelected
+                                  })
+                })}
+                        value={this.state.bookToCopy}>
+                    {this.state.allBooksInDB &&
+                     this.state.allBooksInDB.map(book =>
+                         <option value={book.id} key={book.id}>
+                             {book.title}
+                         </option>
+                     )
+
+                    }
+                </select>
+
+                {/*<input placeholder="Book ID" type="text" className="input-group"*/}
+                {/*       onChange={ (e) =>*/}
+                {/*           this.setState({*/}
+                {/*                             book_id: e.target.value*/}
+                {/*                         })*/}
+                {/*       }/>*/}
+                {/*<br/>*/}
+
+
+
+
+
+
+
 
 
                 <h4 >
@@ -89,123 +125,117 @@ export default class CreateBookCopy extends React.Component {
                         Audiobook
                     </option>
                 </select>
-
-
-
-
-
                 <br/>
-                {this.state.dtype === 'audiobooks' &&
-                 <div>
-
-                    <h4>
-                        File Size MD
-                    </h4>
-                     <input placeholder="File Size MD" type="text" className="input-group"
-                            onChange={ (e) =>
-                                this.setState({
-                                                  fileSizeMb: e.target.value
-                                              })
-                            }/>
-                    <h4>
-                         File Type
-                    </h4>
-                     <input placeholder="File Type" type="text" className="input-group"
-                            onChange={ (e) =>
-                                this.setState({
-                                                  fileType: e.target.value
-                                              })
-                            }/>
-                    <h4>
-                        Narrated By
-                    </h4>
-                     <input placeholder="Narrated By" type="text" className="input-group"
-                            onChange={ (e) =>
-                                this.setState({
-                                                  narratedBy: e.target.value
-                                              })
-                            }/>
-                    <h4>
-                        Length
-                    </h4>
-                     <input placeholder="Number of Minutes" type="number" className="input-group"
-                            onChange={ (e) =>
-                                this.setState({
-                                                  numMinutes: e.target.value
-                                              })
-                            }/>
-                 </div>
-                }
 
 
 
 
-                {this.state.dtype === 'hard_copy' &&
-                 <div>
+                {/*<br/>*/}
+                {/*{this.state.dtype === 'audiobooks' &&*/}
+                {/* <div>*/}
 
-                     <h4>
-                         Edition
-                     </h4>
-                     <input placeholder="Edition" type="text" className="input-group"
-                            onChange={ (e) =>
-                                this.setState({
-                                                  edition: e.target.value
-                                              })
-                            }/>
-                     <h4>
-                         Current Condition
-                     </h4>
-                     <select id="currentCondition" className="custom-select" onChange={(event => {
-                         const currentCondition = event.target.value;
-                         this.setState({
-                                           currentCondition : currentCondition
-                                       })
-                     })}
-                             value={this.state.currentCondition}>
-                         <option value="NEW">
-                             New
-                         </option>
-                         <option value="GOOD">
-                             Good
-                         </option>
-                         <option value="ACCEPTABLE">
-                             Acceptable
-                         </option>
-                         <option value="WORN">
-                             Worn
-                         </option>
-                     </select>
-                     <h4>
-                         Length
-                     </h4>
-                     <input placeholder="Length" type="number" className="input-group"
-                            onChange={ (e) =>
-                                this.setState({
-                                                  numPages: e.target.value
-                                              })
-                            }/>
-                 </div>
-                }
+                {/*    <h4>*/}
+                {/*        File Size MD*/}
+                {/*    </h4>*/}
+                {/*     <input placeholder="File Size MD" type="text" className="input-group"*/}
+                {/*            onChange={ (e) =>*/}
+                {/*                this.setState({*/}
+                {/*                                  fileSizeMb: e.target.value*/}
+                {/*                              })*/}
+                {/*            }/>*/}
+                {/*    <h4>*/}
+                {/*         File Type*/}
+                {/*    </h4>*/}
+                {/*     <input placeholder="File Type" type="text" className="input-group"*/}
+                {/*            onChange={ (e) =>*/}
+                {/*                this.setState({*/}
+                {/*                                  fileType: e.target.value*/}
+                {/*                              })*/}
+                {/*            }/>*/}
+                {/*    <h4>*/}
+                {/*        Narrated By*/}
+                {/*    </h4>*/}
+                {/*     <input placeholder="Narrated By" type="text" className="input-group"*/}
+                {/*            onChange={ (e) =>*/}
+                {/*                this.setState({*/}
+                {/*                                  narratedBy: e.target.value*/}
+                {/*                              })*/}
+                {/*            }/>*/}
+                {/*    <h4>*/}
+                {/*        Length*/}
+                {/*    </h4>*/}
+                {/*     <input placeholder="Number of Minutes" type="number" className="input-group"*/}
+                {/*            onChange={ (e) =>*/}
+                {/*                this.setState({*/}
+                {/*                                  numMinutes: e.target.value*/}
+                {/*                              })*/}
+                {/*            }/>*/}
+                {/* </div>*/}
+                {/*}*/}
+
+
+
+
+                {/*{this.state.dtype === 'hard_copy' &&*/}
+                {/* <div>*/}
+
+                {/*     <h4>*/}
+                {/*         Edition*/}
+                {/*     </h4>*/}
+                {/*     <input placeholder="Edition" type="text" className="input-group"*/}
+                {/*            onChange={ (e) =>*/}
+                {/*                this.setState({*/}
+                {/*                                  edition: e.target.value*/}
+                {/*                              })*/}
+                {/*            }/>*/}
+                {/*     <h4>*/}
+                {/*         Current Condition*/}
+                {/*     </h4>*/}
+                {/*     <select id="currentCondition" className="custom-select" onChange={(event => {*/}
+                {/*         const currentCondition = event.target.value;*/}
+                {/*         this.setState({*/}
+                {/*                           currentCondition : currentCondition*/}
+                {/*                       })*/}
+                {/*     })}*/}
+                {/*             value={this.state.currentCondition}>*/}
+                {/*         <option value="NEW">*/}
+                {/*             New*/}
+                {/*         </option>*/}
+                {/*         <option value="GOOD">*/}
+                {/*             Good*/}
+                {/*         </option>*/}
+                {/*         <option value="ACCEPTABLE">*/}
+                {/*             Acceptable*/}
+                {/*         </option>*/}
+                {/*         <option value="WORN">*/}
+                {/*             Worn*/}
+                {/*         </option>*/}
+                {/*     </select>*/}
+                {/*     <h4>*/}
+                {/*         Length*/}
+                {/*     </h4>*/}
+                {/*     <input placeholder="Length" type="number" className="input-group"*/}
+                {/*            onChange={ (e) =>*/}
+                {/*                this.setState({*/}
+                {/*                                  numPages: e.target.value*/}
+                {/*                              })*/}
+                {/*            }/>*/}
+                {/* </div>*/}
+                {/*}*/}
                 <br/>
 
                 <button className="btn btn-primary btn-block"
                         onClick={ () => {
                             let book = {
-                                book_id: this.state.book_id,
-                                edition: this.state.edition,
+                                book_id: this.state.bookToCopy,
                                 is_available: this.state.isAvailable,
-                                fileSizeMb: this.state.fileSizeMb,
-                                fileType: this.state.fileType,
                                 dtype: this.state.dtype,
-                                narratedBy: this.state.narratedBy,
-                                numMinutes: this.state.numMinutes,
-                                currentCondition: this.state.currentCondition,
-                                numPages: this.state.numPages
                             };
+                            console.log(book)
                             this.createBook(book)
                         }}
                 >
-                    Create Book
+                    Create Book Copy
                 </button>
             </div>
         )
