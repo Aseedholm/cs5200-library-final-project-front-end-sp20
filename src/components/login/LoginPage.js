@@ -46,7 +46,7 @@ export default class LoginPage extends React.Component {
 
                 {this.state.userType === 'Member' &&
                  // eslint-disable-next-line react/jsx-no-undef
-                    <Link className="btn btn-primary btn-block" to={"/"} onClick={ () => {
+                    <Link className="btn btn-primary btn-block" to={"/member"} onClick={ () => {
                         console.log('Member')
                     }}>
                         Login Member

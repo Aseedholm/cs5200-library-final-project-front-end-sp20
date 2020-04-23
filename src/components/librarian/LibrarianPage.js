@@ -12,8 +12,11 @@ export default class LibrarianPage extends React.Component {
                 <Link className="btn btn-primary btn-block " to={`/user-management/librarian/member-search`}>
                     Search Members
                 </Link>
-                <Link className="btn btn-primary btn-block " to={`/view-all-members`}>
+                <Link className="btn btn-primary btn-block " to={`/librarian/view-all-members`}>
                     View All Members
+                </Link>
+                <Link className="btn btn-primary btn-block " to={`/book-search/`}>
+                    Book Search
                 </Link>
                 <Link className="btn btn-primary btn-block " to={`/create-book`}>
                     Create Book Copy
