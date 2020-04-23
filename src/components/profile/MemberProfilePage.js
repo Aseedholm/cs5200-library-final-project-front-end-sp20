@@ -20,7 +20,8 @@ export default class MemberProfilePage extends React.Component {
         libraryCardExpirationDate: '',
         checkedOutBooks: [],
         sponsorInfo:{},
-        editing: false
+        editing: false,
+        sponsoredList: []
 
     }
 
@@ -85,6 +86,12 @@ export default class MemberProfilePage extends React.Component {
             .then(results => this.setState({
                                                checkedOutBooks: results
                                            }))
+        fetch(`http://localhost:8080/api/members/${memberId}/sponsor-recipients`)
+            .then(response => response.json())
+            .then(results => this.setState({
+                                                   sponsoredList: results[0].recipientsOfSponsorship
+                                               }))
+            // .then(results => console.log(this.state.sponsoredList))
 
     }
 
@@ -193,7 +200,6 @@ export default class MemberProfilePage extends React.Component {
                      </div>
                     }
 
-                    <h1>MEMBER PROFILE PAGE</h1>
 
                     {this.state.editing === true &&
                      <div>
@@ -295,6 +301,8 @@ export default class MemberProfilePage extends React.Component {
                          }
                          }
                                 value={this.state.member.lastName}/>
+
+
                          {this.state.member.sponsoredBy &&
                           <span>
                         <h3>Sponsored By</h3>
@@ -304,13 +312,42 @@ export default class MemberProfilePage extends React.Component {
                         </h4>
                      </span>
 
+
+
                          }
+
+
+
+
+
+
+
                          <h3>Library Card Expiration Date</h3>
                          <h4 className="form-control">
                              {this.state.libraryCardExpirationDate}
                          </h4>
                      </div>
                     }
+
+                    {this.state.sponsoredList
+                     &&
+                     <h3>
+                         Sponsored Members:
+                     </h3>
+                    }
+
+                    {this.state.sponsoredList
+
+                     && this.state.sponsoredList.map((users, index) =>
+
+                         <span>
+                             {/*<li>*/}
+                                 <h4 className="form-control">
+                                    {users.firstName} {users.lastName}
+                                 </h4>
+                             {/*</li>*/}
+                         </span>
+                    )}
 
                     <br/>
                     <h3> Currently Rented Books by ID </h3>
