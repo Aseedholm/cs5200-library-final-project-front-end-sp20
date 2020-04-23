@@ -26,6 +26,9 @@ export default class UserAdminPage extends React.Component {
                 <Link className="btn btn-primary btn-block " to={`/create-book`}>
                     Create Book Copy
                 </Link>
+                <Link className="btn btn-primary btn-block " to={`/book-copy-page/`}>
+                    Book Copy List
+                </Link>
                 <Link className="btn btn-primary btn-block " to={`/book-search/`}>
                     Book Search
                 </Link>

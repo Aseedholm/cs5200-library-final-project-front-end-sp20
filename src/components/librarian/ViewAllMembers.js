@@ -24,7 +24,7 @@ export default class ViewAllMembers extends React.Component {
                     All Library Members
                 </h1>
                 <ul className="list-group">
-                    {this.props.match.path.toString().includes("librarian") &&
+                    {this.props.match.path.toString().includes("/librarian/") &&
                         this.state.libraryMembers
                               && this.state.libraryMembers.map((users, index) =>
                                                                    <li key={index} className="list-group-item">
@@ -36,7 +36,7 @@ export default class ViewAllMembers extends React.Component {
                                 )
 
                     }
-                    {this.props.match.path.toString().includes("member") &&
+                    {this.props.match.path.toString().includes("/member/") &&
                      this.state.libraryMembers
                      && this.state.libraryMembers.map((users, index) =>
                                                           <li key={index} className="list-group-item">
