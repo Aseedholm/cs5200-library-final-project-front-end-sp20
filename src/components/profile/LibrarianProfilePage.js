@@ -10,7 +10,7 @@ export default class LibrarianProfilePage extends React.Component {
             username: '',
             password: '',
             email: '',
-            dob: '',
+            dateOfBirth: '',
             firstName: '',
             lastName: '',
             dateHired: '',
@@ -52,7 +52,7 @@ export default class LibrarianProfilePage extends React.Component {
                                                    username: results.username,
                                                    password: results.password,
                                                    email: results.email,
-                                                   dob: results.dateOfBirth,
+                                                   dateOfBirth: results.dateOfBirth,
                                                    firstName: results.firstName,
                                                    lastName: results.lastName,
                                                    dateHired: results.dateHired,
@@ -113,7 +113,7 @@ export default class LibrarianProfilePage extends React.Component {
                          </h4>
                          <h3>Date of Birth</h3>
                          <h4 className="form-control">
-                             {this.state.librarian.dob}
+                             {this.state.librarian.dateOfBirth}
                          </h4>
                          <h3>First Name</h3>
                          <h4 className="form-control">
@@ -190,14 +190,14 @@ export default class LibrarianProfilePage extends React.Component {
                              const newDOB = e.target.value;
                              this.setState({
                                                librarian: {
-                                                   ...this.state.librarian, dob: newDOB
+                                                   ...this.state.librarian, dateOfBirth: newDOB
                                                }
                                            }
                              )
 
                          }
                          }
-                                value={this.state.librarian.dob}/>
+                                value={this.state.librarian.dateOfBirth}/>
 
 
 
