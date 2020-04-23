@@ -95,7 +95,7 @@ export default class MemberProfilePage extends React.Component {
                 return prevState
             })
         }
-        if (prevState.checkedOutBooks !== this.state.checkedOutBooks) {
+        if (prevState.checkedOutBooks.length !== this.state.checkedOutBooks.length) {
             this.setState(prevState => {
                 prevState.checkedOutBooks = this.state.checkedOutBooks
                 return prevState
