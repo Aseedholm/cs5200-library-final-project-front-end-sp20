@@ -12,7 +12,7 @@ export default class MemberProfilePage extends React.Component {
             username: '',
             password: '',
             email: '',
-            dob: '',
+            dateOfBirth: '',
             firstName: '',
             lastName: '',
             sponsoredBy: ''
@@ -22,6 +22,16 @@ export default class MemberProfilePage extends React.Component {
         sponsorInfo:{},
         editing: false
 
+    }
+
+    updateMember = () => {
+        fetch(`http://localhost:8080/api/members/${this.props.match.params.memberId}`, {
+            method: "PUT",
+            body: JSON.stringify(this.state.member),
+            headers: {
+                'content-type': "application/json"
+            }
+        })
     }
 
     changeEditing = (editing) => {
@@ -54,7 +64,7 @@ export default class MemberProfilePage extends React.Component {
                                                    username: results.username,
                                                    password: results.password,
                                                    email: results.email,
-                                                   dob: results.dateOfBirth,
+                                                   dateOfBirth: results.dateOfBirth,
                                                    firstName: results.firstName,
                                                    lastName: results.lastName,
                                                    sponsoredBy: results.sponsoredBy,
@@ -79,11 +89,17 @@ export default class MemberProfilePage extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(prevState.checkedOutBooks.length !== this.state.checkedOutBooks.length) {
+        if (prevState.member !== this.state.member) {
             this.setState(prevState => {
-                            prevState.checkedOutBooks = this.state.checkedOutBooks
-                            return prevState
-                          })
+                prevState.member = this.state.member
+                return prevState
+            })
+        }
+        if (prevState.checkedOutBooks !== this.state.checkedOutBooks) {
+            this.setState(prevState => {
+                prevState.checkedOutBooks = this.state.checkedOutBooks
+                return prevState
+            })
         }
     }
 
@@ -123,6 +139,14 @@ export default class MemberProfilePage extends React.Component {
                      </button>
 
                     }
+                    {this.props.match.path.toString().includes("admin") &&
+                        <button className="btn btn-primary btn-sm"
+                                onClick={() => {
+                                    this.updateMember(this.state.librarian)
+                                }}>
+                            Update Profile
+                        </button>
+                    }
 
                     <h1>MEMBER PROFILE PAGE</h1>
 
@@ -142,7 +166,7 @@ export default class MemberProfilePage extends React.Component {
                          </h4>
                          <h3>Date of Birth</h3>
                          <h4 className="form-control">
-                             {this.state.member.dob}
+                             {this.state.member.dateOfBirth}
                          </h4>
                          <h3>First Name</h3>
                          <h4 className="form-control">
@@ -169,6 +193,124 @@ export default class MemberProfilePage extends React.Component {
                      </div>
                     }
 
+                    <h1>MEMBER PROFILE PAGE</h1>
+
+                    {this.state.editing === true &&
+                     <div>
+                         <h3>Username</h3>
+                         <input className="form-control" placeholder="Username" onChange={(e) => {
+                             const newUsername = e.target.value;
+                             this.setState({
+                                               member: {
+                                                   ...this.state.member, username: newUsername
+                                               }
+                                           }
+                             )
+
+                         }
+                         }
+                                value={this.state.member.username}/>
+                         {/*<h4 className="form-control">*/}
+                         {/*    {this.state.member.username}*/}
+                         {/*</h4>*/}
+                         <h3>Password</h3>
+                         <input className="form-control" placeholder="Password" type="password" onChange={(e) => {
+                             const newPassword = e.target.value;
+                             this.setState({
+                                               member: {
+                                                   ...this.state.member, password: newPassword
+                                               }
+                                           }
+                             )
+
+                         }
+                         }
+                                value={this.state.member.password}/>
+                         {/*<h4 className="form-control">*/}
+                         {/*    {this.state.member.password}*/}
+                         {/*</h4>*/}
+                         <h3>Email</h3>
+                         <input className="form-control" placeholder="Email" onChange={(e) => {
+                             const newEmail = e.target.value;
+                             this.setState({
+                                               member: {
+                                                   ...this.state.member, email: newEmail
+                                               }
+                                           }
+                             )
+
+                         }
+                         }
+                                value={this.state.member.email}/>
+                         {/*<h4 className="form-control">*/}
+                         {/*    {this.state.member.email}*/}
+                         {/*</h4>*/}
+                         <h3>Date of Birth</h3>
+                         <input className="form-control" type="date" onChange={(e) => {
+                             const newDOB = e.target.value;
+                             this.setState({
+                                               member: {
+                                                   ...this.state.member, dateOfBirth: newDOB
+                                               }
+                                           }
+                             )
+
+                         }
+                         }
+                                value={this.state.member.dateOfBirth}/>
+                         {/*<h4 className="form-control">*/}
+                         {/*    {this.state.member.dateOfBirth}*/}
+                         {/*</h4>*/}
+
+
+                         <h3>First Name</h3>
+                         <input className="form-control" placeholder="First Name" onChange={(e) => {
+                             const firstName = e.target.value;
+                             this.setState({
+                                               member: {
+                                                   ...this.state.member, firstName: firstName
+                                               }
+                                           }
+                             )
+
+                         }
+                         }
+                                value={this.state.member.firstName}/>
+                         {/*<h4 className="form-control">*/}
+                         {/*    {this.state.member.firstName}*/}
+                         {/*</h4>*/}
+                         <h3>Last Name</h3>
+                         {/*<h4 className="form-control">*/}
+                         {/*    {this.state.member.lastName}*/}
+                         {/*</h4>*/}
+                         <input className="form-control" placeholder="Last Name" onChange={(e) => {
+                             const lastName = e.target.value;
+                             this.setState({
+                                               member: {
+                                                   ...this.state.member, lastName: lastName
+                                               }
+                                           }
+                             )
+
+                         }
+                         }
+                                value={this.state.member.lastName}/>
+                         {this.state.member.sponsoredBy &&
+                          <span>
+                        <h3>Sponsored By</h3>
+                        <h4 className="form-control">
+                            {this.state.member.sponsoredBy}
+                            {console.log("HERE",this.state.sponsorInfo)}
+                        </h4>
+                     </span>
+
+                         }
+                         <h3>Library Card Expiration Date</h3>
+                         <h4 className="form-control">
+                             {this.state.libraryCardExpirationDate}
+                         </h4>
+                     </div>
+                    }
 
                     <br/>
                     <h3> Currently Rented Books by ID </h3>
