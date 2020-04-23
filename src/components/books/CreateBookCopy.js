@@ -64,12 +64,12 @@ export default class CreateBookCopy extends React.Component {
                 </h4>
 
                 <select id="bookType" className="custom-select" onChange={(event => {
-                    const bookSelected = event.target.value;
+                    const book_id = event.target.value;
                     this.setState({
-                                      bookToCopy : bookSelected
+                                      book_id : book_id
                                   })
                 })}
-                        value={this.state.bookToCopy}>
+                        value={this.state.book_id}>
                     {this.state.allBooksInDB &&
                      this.state.allBooksInDB.map(book =>
                          <option value={book.id} key={book.id}>
@@ -228,7 +228,7 @@ export default class CreateBookCopy extends React.Component {
                         onClick={ () => {
                             let book = {
                                 book_id: this.state.bookToCopy,
-                                is_available: this.state.isAvailable,
+                                isAvailable: this.state.isAvailable,
                                 dtype: this.state.dtype,
                             };
                             console.log(book)
