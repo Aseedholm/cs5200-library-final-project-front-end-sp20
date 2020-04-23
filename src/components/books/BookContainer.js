@@ -21,6 +21,7 @@ import LibrarianProfilePage from "../profile/LibrarianProfilePage";
 import UserAdminRegistration from "../registration/UserAdminRegistration";
 import CreateBookCopy from "./CreateBookCopy";
 import AuthorDetail from "../author/AuthorDetail";
+import ViewAllMembers from "../librarian/ViewAllMembers";
 import AllUsersView from "../userAdmin/AllUsersView";
 
 
@@ -229,6 +230,11 @@ export class BookContainer extends React.Component {
                             path="/create-book"
                             exact={true}
                             component={CreateBookCopy}/>
+
+                        <Route
+                            path="/view-all-members"
+                            exact={true}
+                            component={ViewAllMembers}/>
 
                     </div>
                 </BrowserRouter>
