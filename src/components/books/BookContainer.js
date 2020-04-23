@@ -23,6 +23,7 @@ import CreateBookCopy from "./CreateBookCopy";
 import AuthorDetail from "../author/AuthorDetail";
 import ViewAllMembers from "../librarian/ViewAllMembers";
 import AllUsersView from "../userAdmin/AllUsersView";
+import BookCopyPage from "./BookCopyPage";
 
 
 export class BookContainer extends React.Component {
@@ -241,6 +242,10 @@ export class BookContainer extends React.Component {
                             exact={true}
                             component={ViewAllMembers}/>
 
+                        <Route
+                            path="/book-copy-page"
+                            exact={true}
+                            component={BookCopyPage}/>
                     </div>
                 </BrowserRouter>
             </div>
