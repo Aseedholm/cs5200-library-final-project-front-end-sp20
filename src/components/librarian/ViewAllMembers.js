@@ -24,17 +24,34 @@ export default class ViewAllMembers extends React.Component {
                     All Library Members
                 </h1>
                 <ul className="list-group">
+                    {this.props.match.path.toString().includes("librarian") &&
+                        this.state.libraryMembers
+                              && this.state.libraryMembers.map((users, index) =>
+                                                                   <li key={index} className="list-group-item">
+                                                                       <Link to={`/user-management/librarian/member-profile/${users.id}`}>
+                                                                           {users.username}
+                                                                       </Link>
+                                                                       {console.log("Librarian Member", index)}
+                                                                   </li>
+                                )
 
-                    {this.state.libraryMembers
+                    }
+                    {this.props.match.path.toString().includes("member") &&
+                     this.state.libraryMembers
                      && this.state.libraryMembers.map((users, index) =>
                                                           <li key={index} className="list-group-item">
-                                                              <Link to={`/user-management/librarian/member-profile/${users.id}`}>
+                                                              <Link to={`/member-profile/${users.id}`}>
                                                                   {users.username}
                                                               </Link>
-                                                              {console.log("Librarian Member", index)}
                                                           </li>
                     )
+
                     }
+
+
+
+
+
                     <br/>
 
                 </ul>

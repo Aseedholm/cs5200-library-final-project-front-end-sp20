@@ -232,7 +232,12 @@ export class BookContainer extends React.Component {
                             component={CreateBookCopy}/>
 
                         <Route
-                            path="/view-all-members"
+                            path="/librarian/view-all-members"
+                            exact={true}
+                            component={ViewAllMembers}/>
+
+                        <Route
+                            path="/member/view-all-members"
                             exact={true}
                             component={ViewAllMembers}/>
 

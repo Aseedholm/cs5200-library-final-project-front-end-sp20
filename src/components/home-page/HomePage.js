@@ -36,9 +36,9 @@ export default class HomePage extends React.Component {
                         Book Search
                     </Link>
                     <br/>
-                    <Link className="btn btn-primary btn-block " to={`/member-search`}>
-                        Search Members
-                    </Link>
+                    {/*<Link className="btn btn-primary btn-block " to={`/member-search`}>*/}
+                    {/*    Search Members*/}
+                    {/*</Link>*/}
 
                 </div>
 
