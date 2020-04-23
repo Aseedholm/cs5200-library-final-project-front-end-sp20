@@ -20,6 +20,16 @@ export default class LibrarianProfilePage extends React.Component {
         editing: false
     }
 
+    updateLibrarian = () => {
+        fetch(`http://localhost:8080/api/librarians/${this.props.match.params.librarianId}`, {
+            method: "PUT",
+            body: JSON.stringify(this.state.librarian),
+            headers: {
+                'content-type': "application/json"
+            }
+        })
+    }
+
     changeEditing = () => {
         if (this.state.editing === false) {
             this.setState({
@@ -79,6 +89,12 @@ export default class LibrarianProfilePage extends React.Component {
                              }>
                          Edit
                      </button>
+                    <button className="btn btn-primary btn-sm"
+                    onClick={() => {
+                        this.updateLibrarian(this.state.librarian)
+                    }}>
+                        Update Profile
+                    </button>
 
                     <h1>LIBRARIAN PROFILE PAGE</h1>
                     {this.state.editing === false &&
@@ -138,37 +154,126 @@ export default class LibrarianProfilePage extends React.Component {
                          value={this.state.librarian.username}/>
 
                          <h3>Password</h3>
-                         <h4 className="form-control">
-                             {this.state.librarian.password}
-                         </h4>
+                         <input className="form-control" placeholder="Password" type="password" onChange={(e) => {
+                             const newPassword = e.target.value;
+                             this.setState({
+                                               librarian: {
+                                                   ...this.state.librarian, password: newPassword
+                                               }
+                                           }
+                             )
+
+                         }
+                         }
+                                value={this.state.librarian.password}/>
+
+
+
                          <h3>Email</h3>
-                         <h4 className="form-control">
-                             {this.state.librarian.email}
-                         </h4>
+                         <input className="form-control" placeholder="Email" onChange={(e) => {
+                             const newEmail = e.target.value;
+                             this.setState({
+                                               librarian: {
+                                                   ...this.state.librarian, email: newEmail
+                                               }
+                                           }
+                             )
+
+                         }
+                         }
+                                value={this.state.librarian.email}/>
+
+
+
                          <h3>Date of Birth</h3>
-                         <h4 className="form-control">
-                             {this.state.librarian.dob}
-                         </h4>
+                         <input className="form-control" type="date" onChange={(e) => {
+                             const newDOB = e.target.value;
+                             this.setState({
+                                               librarian: {
+                                                   ...this.state.librarian, dob: newDOB
+                                               }
+                                           }
+                             )
+
+                         }
+                         }
+                                value={this.state.librarian.dob}/>
+
+
+
+
                          <h3>First Name</h3>
-                         <h4 className="form-control">
-                             {this.state.librarian.firstName}
-                         </h4>
+                         <input className="form-control" placeholder="First Name" onChange={(e) => {
+                             const firstName = e.target.value;
+                             this.setState({
+                                               librarian: {
+                                                   ...this.state.librarian, firstName: firstName
+                                               }
+                                           }
+                             )
+
+                         }
+                         }
+                                value={this.state.librarian.firstName}/>
+                         {/*<h4 className="form-control">*/}
+                         {/*    {this.state.librarian.firstName}*/}
+                         {/*</h4>*/}
+
+
                          <h3>Last Name</h3>
-                         <h4 className="form-control">
-                             {this.state.librarian.lastName}
-                         </h4>
+                         <input className="form-control" placeholder="Last Name" onChange={(e) => {
+                             const lastName = e.target.value;
+                             this.setState({
+                                               librarian: {
+                                                   ...this.state.librarian, lastName: lastName
+                                               }
+                                           }
+                             )
+
+                         }
+                         }
+                                value={this.state.librarian.lastName}/>
+                         {/*<h4 className="form-control">*/}
+                         {/*    {this.state.librarian.lastName}*/}
+                         {/*</h4>*/}
+
+
+
+
                          <h3>Date Hired</h3>
-                         <h4 className="form-control">
-                             {this.state.librarian.dateHired}
-                         </h4>
+                         <input className="form-control" type="date" onChange={(e) => {
+                             const newDateOfHire = e.target.value;
+                             this.setState({
+                                               librarian: {
+                                                   ...this.state.librarian, dateHired: newDateOfHire
+                                               }
+                                           }
+                             )
+
+                         }
+                         }
+                                value={this.state.librarian.dateHired}/>
+
+
+
                          <h3>W2 on file</h3>
-                         <h4 className="form-control">
-                             {this.state.librarian.hasW2OnFile &&
-                              this.state.librarian.hasW2OnFile.toString()
+                         <select id="w2OnFile" className="custom-select" onChange={(event => {
+                             const newW2 = event.target.value;
+                             this.setState({
+                                               librarian: {
+                                                   ...this.state.librarian, hasW2OnFile: newW2
+                                               }
+                                           })
+                         })}
+                         value={this.state.librarian.hasW2OnFile}>
+                             <option value={true}>
+                                 True
+                             </option>
+                             <option value={false}>
+                                 False
+                             </option>
 
-                             }
-
-                         </h4>
+                         </select>
                      </div>
                     }
 
